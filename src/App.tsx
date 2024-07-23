@@ -1,13 +1,20 @@
-
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import SharedLayout from './components/SharedLayout/SharedLayout'
+
+
+
+
+
 
 function App() {
   
-
   return (
-    <>
-     <h1>PhoneBook</h1>
-    </>
+   <Routes>
+  <Route path='/' element={<SharedLayout />}>
+  
+  </Route>
+</Routes>
   )
 }
 
