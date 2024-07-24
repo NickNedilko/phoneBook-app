@@ -1,6 +1,6 @@
 import  {FC} from "react"
 import { Logo, StyledLink } from "./Logo.styled"
-import logo  from '../../../public/phonebook.svg'
+import logo  from '../../assets/phonebook.svg'
 
 
 export const SiteLogo: FC = () => {
