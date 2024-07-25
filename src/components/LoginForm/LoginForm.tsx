@@ -3,6 +3,8 @@ import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Form, Title, Wrapper } from '../RegisterForm/RegisterForm.styled';
+import { login } from '../../redux/auth/authThunk';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -24,6 +26,9 @@ interface Values {
 }
 
 export const LoginForm = () => {
+
+  const dispatch = useDispatch();
+
   const formik = useFormik({
       initialValues: {
       email: 'foobar@example.com',
@@ -31,7 +36,7 @@ export const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values:Values) => {
-      alert(JSON.stringify(values, null, 2));
+       dispatch(login(values));
     },
   });
 

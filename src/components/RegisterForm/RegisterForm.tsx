@@ -4,6 +4,8 @@ import * as yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { Form, Text, Title, Wrapper } from './RegisterForm.styled';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/authThunk';
 
 
 const validationSchema = yup.object({
@@ -25,6 +27,11 @@ interface Values {
   password: string;
 }
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+
+
+
+
   const formik = useFormik({
       initialValues: {
       name: " Nick",
@@ -33,7 +40,7 @@ export const RegisterForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values:Values) => {
-      alert(JSON.stringify(values, null, 3));
+        dispatch(signUp(values));
     },
   });
 
