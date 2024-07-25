@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { login, logout, signUp } from "./authThunk"
+import { getCurrentUser, login, logout, signUp } from "./authThunk"
 
 interface User {
     name: string,
@@ -62,6 +62,15 @@ const authSlice = createSlice({
             state.isLoggedIn = false; 
             state.isLoading = false;
         }).addCase(logout.rejected, (state) => {
+            state.isLoading = true;
+        }).addCase(getCurrentUser.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getCurrentUser.fulfilled, (state, {payload}) => {
+            state.user = payload.user;
+            state.token = payload.token;
+            state.isLoggedIn = true;
+            state.isLoading = false;
+        }).addCase(getCurrentUser.rejected, (state) => {
             state.isLoading = true;
         })
 

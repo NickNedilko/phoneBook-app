@@ -5,16 +5,17 @@ import { Navigation } from "../Navigation/Navigation"
 import { AuthNav } from "../AuthNav/AuthNav"
 import { SiteLogo } from "../Logo/Logo"
 import { UserMenu } from "../UserMenu/UserMenu"
+import { useAuth } from "../../hooks/useAuth"
 
 
 
 export const AppBar: FC = () => {
+  const { isLoggedIn } = useAuth();
     return (
       <Nav>
         <SiteLogo />
         <Navigation />
-        <AuthNav />
-        <UserMenu/>
+        {isLoggedIn ? <UserMenu/> : <AuthNav /> }
       </Nav>
     )
 }
