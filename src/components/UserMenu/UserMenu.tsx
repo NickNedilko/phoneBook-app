@@ -7,7 +7,7 @@ import { logout } from "../../redux/auth/authThunk";
 
 
 export const UserMenu: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
  
   return (
     <Wrapper>

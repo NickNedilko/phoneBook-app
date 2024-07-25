@@ -27,7 +27,7 @@ interface Values {
   password: string;
 }
 export const RegisterForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
 
 

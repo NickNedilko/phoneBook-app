@@ -27,7 +27,7 @@ interface Values {
 
 export const LoginForm = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const formik = useFormik({
       initialValues: {
