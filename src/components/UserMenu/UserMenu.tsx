@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/useAuth";
 export const UserMenu: FC = () => {
   const dispatch = useDispatch<any>();
   const {user} = useAuth();
- console.log(user)
+
   return (
     <Wrapper>
       <UserName>Welcome, {user.name} </UserName>

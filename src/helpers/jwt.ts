@@ -1,7 +1,9 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = 'https://phonebook-app-backend-xskd.onrender.com';
+// axios.defaults.baseURL = 'https://phonebook-app-backend-xskd.onrender.com';
+
+axios.defaults.baseURL = 'http://localhost:3000';
 
 // Utility to add JWT
 export const setAuthHeader = (token: string) => {

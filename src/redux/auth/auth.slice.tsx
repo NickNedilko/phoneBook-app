@@ -3,6 +3,7 @@ import { getCurrentUser, login, logout, signUp } from "./authThunk"
 
 interface User {
     name: string,
+    id: string,
     email: string,
     avatarUrl: string
 }
@@ -18,7 +19,7 @@ interface State {
 
 const initialState: State = {
     token: '',
-    user: {name: '', email: '', avatarUrl: ''},
+    user: {name: '', id: '', email: '', avatarUrl: ''},
     isLoading: false,
     error: null,
     isLoggedIn: false,
@@ -57,7 +58,8 @@ const authSlice = createSlice({
             state.user = {
                 name: '',
                 email: '',
-                avatarUrl: ''
+                avatarUrl: '',
+                id: ''
             }
             state.isLoggedIn = false; 
             state.isLoading = false;

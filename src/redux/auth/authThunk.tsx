@@ -2,15 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 // import { setAuthHeader } from "../../helpers/jwt";
 import axios from "axios";
 import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
+import {UserInfo} from "../../types/types"
 
-interface UserInfo{
-    name: string;
-    email: string
-    password: string
-}
 
 export const signUp = createAsyncThunk(
-    'auth/signUp', async(credentials : UserInfo, thunkAPI)=> {
+    'auth/signUp', async(credentials: UserInfo, thunkAPI)=> {
         try {
         const {data} = await axios.post('api/auth/register', credentials)
             setAuthHeader(data.token)
@@ -58,7 +54,7 @@ export const getCurrentUser =  createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
         const res = await axios.get('api/auth/current');
-        console.log(res.data);
+       
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
