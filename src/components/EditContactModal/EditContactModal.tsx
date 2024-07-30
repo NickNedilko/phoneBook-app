@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { FC, useState } from 'react';
 
 import {
   Dialog,
@@ -15,15 +15,24 @@ import {
 } from '@mui/material';
 import { useUpdateContactMutation } from '../../redux/contacts/contactsApi';
 
+interface EditModalProps {
+    open: true,
+    onClose: () => void,
+    id: string,
+    name: string,
+    email: string,
+    number: string 
+}
 
-const EditContactModal = ({ open, onClose, id, name, email, number }) => {
 
-    const [userName, setUserName] = useState(name);
-  const [userEmail, setUserEmail] = useState(email);
-    const [phoneNumber, setPhoneNumber] = useState(number);
+const EditContactModal:FC<EditModalProps> = ({ open, onClose, id, name, email, number }) => {
+
+    const [userName, setUserName] = useState<string>(name);
+  const [userEmail, setUserEmail] = useState<string>(email);
+    const [phoneNumber, setPhoneNumber] = useState<string>(number);
     
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-    const [updateContact, {isLoading}] = useUpdateContactMutation()
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+    const [updateContact] = useUpdateContactMutation()
 
   const handleSave = () => {
     if (userName === '' || phoneNumber === '') {
