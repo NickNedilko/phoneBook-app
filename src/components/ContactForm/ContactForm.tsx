@@ -28,11 +28,12 @@ interface Values {
 }
 export const ContactForm = () => {
   const { user } = useAuth(selectUser);
-  console.log(user.id)
+
   const [addContacts, {isLoading}] = useAddContactsMutation();
 
   const formik = useFormik({
-      initialValues: {
+    initialValues: {
+       
       name: "Nick Bol",
       email: 'foobar@example.com',
       phone: '0973563476',
@@ -80,7 +81,7 @@ export const ContactForm = () => {
           error={formik.touched.phone && Boolean(formik.errors.phone)}
           helperText={formik.touched.phone && formik.errors.phone}
               />
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button color="primary" variant="contained" fullWidth type="submit" disabled={isLoading}>
           Add contact
         </Button>
       </Form>

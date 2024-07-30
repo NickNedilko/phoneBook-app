@@ -10,11 +10,12 @@ import LoginPage from '../pages/LoginPage';
 import { ContactsPage } from '../pages/ContactsPage';
 import { PrivateRoute, RestrictedRoute } from './RedirectRoutes';
 import { getCurrentUser } from '../redux/auth/authThunk';
+import { AppDispatch } from '../redux/store';
 
 
 
 function App() {
-  const dispatch = useDispatch<any>();
+  const dispatch: AppDispatch = useDispatch<any>();
   const { isRefreshing } = useAuth();
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useDeleteContactMutation } from '../../redux/contacts/contactsApi';
 import {
   Item,
@@ -12,16 +12,15 @@ import {
   EditIcon,
 } from './ContactItem.styled';
 import EditContactModal from "../EditContactModal/EditContactModal";
+import { Contact } from "../../types/types";
 
-export const ContactItem = ({ contact }) => {
-  
+
+
+export const ContactItem: FC<Contact> = ({ contact}) => {
   const [deleteContact, {isLoading}] = useDeleteContactMutation()
   const { name, phone, email } = contact;
-  // console.log(id)
-//   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
 
-  // const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
     <>
@@ -42,9 +41,8 @@ export const ContactItem = ({ contact }) => {
           <Button
             type="button"
             aria-label="delete"
-            // onClick={() => dispatch(deleteContact(id))}
             onClick={() => deleteContact(contact._id)}
-            // disabled={isDeleting}
+            disabled={isLoading}
           >
             <DeleteIcon />
           </Button>

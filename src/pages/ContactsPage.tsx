@@ -7,8 +7,9 @@ import { useGetContactsQuery } from "../redux/contacts/contactsApi"
 
 
 export const ContactsPage = () => {
-    const {user}  = useAuth(selectUser);
-     const { data, error, isLoading } = useGetContactsQuery(user.id)
+    const { user } = useAuth(selectUser);
+    
+     const { data} = useGetContactsQuery(user.id)
      console.log(data)
 
     return (

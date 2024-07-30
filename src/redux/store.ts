@@ -24,8 +24,8 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
-
   },
+  
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
