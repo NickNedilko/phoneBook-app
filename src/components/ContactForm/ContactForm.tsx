@@ -31,6 +31,14 @@ export const ContactForm = () => {
 
   const [addContacts, {isLoading}] = useAddContactsMutation();
 
+  const handleSubmit = (values: Values, id: string) => {
+    const data = {
+      id,
+      ...values
+    }
+    return addContacts(data);
+}
+
   const formik = useFormik({
     initialValues: {
        
@@ -39,7 +47,7 @@ export const ContactForm = () => {
       phone: '0973563476',
     },
     validationSchema: validationSchema,
-    onSubmit: (values:Values) => addContacts(values, user.id)
+    onSubmit: (values:Values) => handleSubmit(values, user.id)
   });
 
   return (

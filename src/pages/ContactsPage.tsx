@@ -7,14 +7,12 @@ import { useGetContactsQuery } from "../redux/contacts/contactsApi"
 
 
 export const ContactsPage = () => {
-    const { user } = useAuth(selectUser);
-    
+    const { user } = useAuth(selectUser);  
      const { data} = useGetContactsQuery(user.id)
     
 
     return (
         <>
-        <h1>Contacts Page!</h1>
             <ContactForm />
             <ContactsList contacts={data} />
         </>        
