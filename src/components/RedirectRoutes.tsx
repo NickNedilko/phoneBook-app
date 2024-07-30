@@ -4,21 +4,21 @@ import { useSelector } from "react-redux";
 import { FC } from "react";
 
 interface RouteProps{
-  element:  JSX.Element,
+  component:  any,
   redirectTo?: string
 }
 
-export const RestrictedRoute: FC<RouteProps> = ({ element , redirectTo = '/contacts' }) => {
+export const RestrictedRoute: FC<RouteProps> = ({ component , redirectTo = '/' }) => {
   const isLogged = useSelector(selectIsLoggedIn);
 
-  return isLogged ? <Navigate to={redirectTo} /> : element;
+  return isLogged ? <Navigate to={redirectTo} /> : component;
 }
 
-export const PrivateRoute: FC<RouteProps> = ({ element, redirectTo = '/' }) =>{
+export const PrivateRoute: FC<RouteProps> = ({ component, redirectTo = '/' }) =>{
   const isLogged = useSelector(selectIsLoggedIn);
   const isFetching = useSelector(selectIsRefreshing);
 
-  return !isLogged && !isFetching ? <Navigate to={redirectTo} /> : element;
+  return !isLogged && !isFetching ? <Navigate to={redirectTo} /> : component;
 }
 
 // import type { FC } from "react";

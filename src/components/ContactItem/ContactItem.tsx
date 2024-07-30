@@ -14,9 +14,11 @@ import {
 import EditContactModal from "../EditContactModal/EditContactModal";
 import { Contact } from "../../types/types";
 
+interface ContactItemProps {
+  contact: Contact
+}
 
-
-export const ContactItem: FC<Contact> = ({ contact}) => {
+export const ContactItem: FC<ContactItemProps> = ({ contact}) => {
   const [deleteContact, {isLoading}] = useDeleteContactMutation()
   const { name, phone, email } = contact;
   const [isModalOpen, setModalOpen] = useState(false);

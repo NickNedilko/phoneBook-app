@@ -3,7 +3,7 @@ import { ContactItem } from "../ContactItem/ContactItem"
 import { Contact } from "../../types/types"
 
 interface ContactsProps {
-  cars: Contact[],
+  contacts: Contact[],
   
 }
 
@@ -11,9 +11,9 @@ export const ContactsList: FC<ContactsProps> = ({ contacts  }) => {
    
     return (
         <ul>
-            {contacts?.map((contact : Contact) =>
+            {contacts?.map((item: Contact) =>
                 
-                     <ContactItem key={contact._id} contact={contact} />
+                     <ContactItem key={item._id} contact={item} />
               
             )}
         </ul>

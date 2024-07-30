@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 import { getCurrentUser, login, logout, signUp } from "./authThunk"
 
 interface User {
-    name: string,
     id: string,
+    name: string,
     email: string,
     avatarUrl: string
 }

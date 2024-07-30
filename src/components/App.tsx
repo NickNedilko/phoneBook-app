@@ -30,9 +30,9 @@ function App() {
     !isRefreshing && (
          <Routes>
   <Route path='/' element={<SharedLayout />}>
-        <Route path='/register' element={<RestrictedRoute element={<RegistrationPage />} redirectTo='contacts'/>} />
-          <Route path='/login' element={<RestrictedRoute element={<LoginPage />} redirectTo='contacts' />} />
-          <Route path='/contacts' element={<PrivateRoute element={<ContactsPage />} redirectTo='login' />} />
+        <Route path='/register' element={<RestrictedRoute component={<RegistrationPage />} redirectTo='/contacts'/>} />
+          <Route path='/login' element={<RestrictedRoute component={<LoginPage />} redirectTo='/contacts'/>} />
+          <Route path='/contacts' element={<PrivateRoute component={<ContactsPage />} redirectTo='/login'/>} />
   </Route>
 </Routes>
 )
