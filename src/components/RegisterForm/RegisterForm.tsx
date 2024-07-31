@@ -29,9 +29,6 @@ interface Values {
 export const RegisterForm = () => {
   const dispatch = useDispatch<any>();
 
-
-
-
   const formik = useFormik({
       initialValues: {
       name: " Nick",

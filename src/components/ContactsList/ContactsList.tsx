@@ -1,17 +1,20 @@
 import { FC } from "react"
 import { ContactItem } from "../ContactItem/ContactItem"
 import { Contact } from "../../types/types"
+import { useAppSelector } from "../../redux/store";
+import { selectUser } from "../../redux/auth/selectors";
+import { useGetContactsQuery } from "../../redux/contacts/contactsApi";
 
-interface ContactsProps {
-  contacts: Contact[] | [],
-  
-}
+// interface ContactsProps {
+//   contacts: Contact[] ,
+// }
 
-export const ContactsList: FC<ContactsProps> = ({ contacts  }) => {
-   
+export const ContactsList: FC = () => {
+   const user = useAppSelector(selectUser);
+     const { data} = useGetContactsQuery(user.id)
     return (
         <ul>
-            {contacts?.map((item: Contact) =>
+            {data?.map((item: Contact) =>
                 
                      <ContactItem key={item._id} contact={item} />
               
