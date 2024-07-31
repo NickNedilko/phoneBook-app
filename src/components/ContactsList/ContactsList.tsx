@@ -5,13 +5,13 @@ import { useAppSelector } from "../../redux/store";
 import { selectUser } from "../../redux/auth/selectors";
 import { useGetContactsQuery } from "../../redux/contacts/contactsApi";
 
-// interface ContactsProps {
-//   contacts: Contact[] ,
-// }
+interface ContactsProps {
+  data: Contact[] ,
+}
 
 export const ContactsList: FC = () => {
    const user = useAppSelector(selectUser);
-     const { data} = useGetContactsQuery(user.id)
+     const { data} = useGetContactsQuery<ContactsProps>(user.id)
     return (
         <ul>
             {data?.map((item: Contact) =>
