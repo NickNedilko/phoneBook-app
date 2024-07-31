@@ -8,11 +8,12 @@ export const Item = styled.li`
   justify-content: space-between;
   padding-bottom: 8px;
   margin-bottom: 20px;
-  border-bottom: 2px solid #ba000d;
+  border-bottom: 2px solid #1565c0;
 `;
 
 export const ContactWrap = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
   text-align: center;
   gap: 10px;
@@ -25,7 +26,7 @@ export const ContactWrap = styled.div`
 export const Avatar = styled(RiContactsFill)`
   width: 30px;
   height: 30px;
-  color: #ba000d;
+  color: #1565c0;
 `;
 
 export const Name = styled.span`
@@ -39,7 +40,7 @@ export const Number = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.16;
-  color: #ba000d;
+  color: #1565c0;
 `;
 
 export const Button = styled.button`
@@ -57,7 +58,7 @@ export const Button = styled.button`
   transition: all 0.45s ease-Out;
 
   :hover {
-    color: #ba000d;
+    color: #5400ba;
   }
 `;
 

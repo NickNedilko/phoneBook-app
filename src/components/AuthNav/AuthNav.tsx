@@ -9,7 +9,7 @@ export const AuthNav: FC = () => {
         <List>
           <li><StyledLink to="/register" 
           aria-label='register'
-            >register</StyledLink></li>
+            >Sign Up</StyledLink></li>
           <li><StyledLink to="login" 
           aria-label='login'
           >Log in</StyledLink></li>

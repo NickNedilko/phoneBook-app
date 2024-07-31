@@ -5,7 +5,8 @@ import * as yup from 'yup';
 import { Form, Title, Wrapper } from '../RegisterForm/RegisterForm.styled';
 import { login } from '../../redux/auth/authThunk';
 import { useDispatch } from 'react-redux';
-
+import loginImg from "../../assets/loginImg.webp"
+import { Img } from './LoginForm.styled';
 
 
 const validationSchema = yup.object({
@@ -71,6 +72,7 @@ export const LoginForm = () => {
           Log in
         </Button>
       </Form>
+    <Img src={loginImg} alt="login image" />
     </Wrapper>
   );
 };

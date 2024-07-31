@@ -2,16 +2,18 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField } from '@mui/material';
-import { Form, Title, Wrapper } from './ContactForm.styled';
+import { ButtonWrapper, Form, Title, Wrapper } from './ContactForm.styled';
 import { useAddContactsMutation } from '../../redux/contacts/contactsApi';
 import { selectUser } from '../../redux/auth/selectors';
 import { useAppSelector } from '../../redux/store';
+import { FC } from 'react';
 
 
 
 const validationSchema = yup.object({
     name: yup
     .string()
+    .min(5)
     .required('Name is required'),
   email: yup
     .string()
@@ -26,7 +28,12 @@ interface Values {
   email: string;
   phone: string;
 }
-export const ContactForm = () => {
+
+interface ContactFormProps {
+  onClose : ()=>void
+}
+
+export const ContactForm: FC<ContactFormProps> = ({onClose}) => {
   
     const user = useAppSelector(selectUser);
 
@@ -37,7 +44,8 @@ export const ContactForm = () => {
       id,
       ...values
     }
-    return addContacts(data);
+    addContacts(data);
+    onClose();
 }
 
   const formik = useFormik({
@@ -89,9 +97,14 @@ export const ContactForm = () => {
           error={formik.touched.phone && Boolean(formik.errors.phone)}
           helperText={formik.touched.phone && formik.errors.phone}
               />
-        <Button color="primary" variant="contained" fullWidth type="submit" disabled={isLoading}>
+        <ButtonWrapper>
+        <Button color="primary" variant="contained" type="submit" disabled={isLoading}>
           Add contact
         </Button>
+        <Button color="primary" variant="contained" type="button" onClick={onClose} >
+          Cancel
+        </Button>
+        </ButtonWrapper>
       </Form>
     </Wrapper>
   );

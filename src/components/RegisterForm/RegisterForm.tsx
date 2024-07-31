@@ -2,10 +2,12 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField } from '@mui/material';
-import { Form, Text, Title, Wrapper } from './RegisterForm.styled';
+import { Form, Img, Text, Title, Wrapper } from './RegisterForm.styled';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../redux/auth/authThunk';
+import signUpImg from "../../assets/signUp.webp"
+
 
 
 const validationSchema = yup.object({
@@ -85,6 +87,7 @@ export const RegisterForm = () => {
           Sign up
         </Button>
       </Form>
+    <Img src={signUpImg} alt="sign up image" />
     </Wrapper>
   );
 };

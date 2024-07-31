@@ -103,9 +103,9 @@ const EditContactModal:FC<EditModalProps> = ({ open, onClose, id, name, email, n
 export const defaultTheme = createTheme({
   palette: {
     primary: {
-      light: '#ff7961',
-      main: '#ba000d',
-      dark: '#f44336',
+      light: '#6164ff',
+      main: '#1565c0',
+      dark: '#3662f4',
       contrastText: '#000',
     },
     secondary: {
