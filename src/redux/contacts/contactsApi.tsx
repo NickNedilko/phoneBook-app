@@ -25,7 +25,7 @@ export const contactsApi = createApi({
       query: (id) => `contacts/${id}`,
       providesTags: ['Contact']
     }),
-    addContacts: builder.mutation<Contact, string>({
+    addContacts: builder.mutation<any>({
       query: ({id, ...data}) => ({
         url: `contacts/${id}`,
         method: 'POST',
