@@ -1,4 +1,4 @@
-import { configureStore, Middleware, Reducer } from '@reduxjs/toolkit';
+import { configureStore, Middleware} from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
