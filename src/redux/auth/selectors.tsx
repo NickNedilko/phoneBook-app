@@ -1,8 +1,10 @@
-import { UserInfo } from "../../types/types";
+import { User } from "../../types/types";
+import { RootState } from "../store";
 
-export const selectIsLoggedIn  = (state:any):string => state.auth.isLoggedIn;
 
-export const selectUser = (state: any):UserInfo => state.auth.user;
+export const selectIsLoggedIn  = (state: RootState):boolean => state.auth.isLoggedIn;
 
-export const selectIsRefreshing = (state: any):boolean => state.auth.isRefreshing;
+export const selectUser = (state: RootState):Partial<User> => state.auth.user;
+
+export const selectIsRefreshing = (state:RootState):boolean => state.auth.isRefreshing;
 

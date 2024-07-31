@@ -6,10 +6,10 @@ export interface Contact {
     phone: string
 }
 
-export interface UserInfo{
-    id?: string,
+export interface User{
+    id: string,
     name: string,
     email: string,
-    avatarUrl?: string,
+    avatarUrl: string,
     password: string
 }

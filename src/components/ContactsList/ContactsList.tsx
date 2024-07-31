@@ -3,7 +3,7 @@ import { ContactItem } from "../ContactItem/ContactItem"
 import { Contact } from "../../types/types"
 
 interface ContactsProps {
-  contacts: Contact[],
+  contacts: Contact[] | [],
   
 }
 

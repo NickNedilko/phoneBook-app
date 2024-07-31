@@ -1,13 +1,13 @@
 import { selectIsLoggedIn, selectIsRefreshing, selectUser } from '../redux/auth/selectors';
-import { User } from '../redux/auth/auth.slice';
 import { useAppSelector } from '../redux/store';
+import { UserInfo } from '../types/types';
 
 
 
 export const useAuth = () => {
-  const isLoggedIn: string = useAppSelector(selectIsLoggedIn);
+  const isLoggedIn: boolean = useAppSelector(selectIsLoggedIn);
   const isRefreshing: boolean = useAppSelector(selectIsRefreshing);
-  const user: User = useAppSelector(selectUser);
+  const user: UserInfo = useAppSelector(selectUser);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
   return {
     isLoggedIn,

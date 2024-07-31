@@ -1,16 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getCurrentUser, login, logout, signUp } from "./authThunk"
+import { User } from "../../types/types"
 
-export interface User {
-    id: string,
-    name: string,
-    email: string,
-    avatarUrl?: string
-}
+
 
 interface State {
     token: string,
-    user: User,
+    user: Partial<User>,
     isLoading: boolean,
     error: null | string,
     isLoggedIn: boolean,
