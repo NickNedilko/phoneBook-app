@@ -4,8 +4,8 @@ import * as yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { Form, Title, Wrapper } from './ContactForm.styled';
 import { useAddContactsMutation } from '../../redux/contacts/contactsApi';
-import { useAuth } from '../../hooks/useAuth';
 import { selectUser } from '../../redux/auth/selectors';
+import { useAppSelector } from '../../redux/store';
 
 
 
@@ -27,7 +27,8 @@ interface Values {
   phone: string;
 }
 export const ContactForm = () => {
-  const { user } = useAuth(selectUser);
+  
+    const user = useAppSelector(selectUser);
 
   const [addContacts, {isLoading}] = useAddContactsMutation();
 
