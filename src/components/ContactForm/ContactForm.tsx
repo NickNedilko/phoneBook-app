@@ -41,7 +41,6 @@ export const ContactForm = () => {
 
   const formik = useFormik({
     initialValues: {
-       
       name: "Nick Bol",
       email: 'foobar@example.com',
       phone: '0973563476',

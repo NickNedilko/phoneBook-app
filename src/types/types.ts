@@ -7,9 +7,9 @@ export interface Contact {
 }
 
 export interface UserInfo{
-    id: string,
+    id?: string,
     name: string,
     email: string,
-    avatarUrl: string,
+    avatarUrl?: string,
     password: string
 }

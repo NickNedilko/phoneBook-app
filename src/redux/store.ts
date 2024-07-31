@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Middleware, Reducer } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/auth.slice';
 import { contactsApi } from './contacts/contactsApi';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 
 const authPersistConfig = {
@@ -20,28 +21,27 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer as Reducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
   
-  middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware({
+  middleware:(getDefaultMiddleware) =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
-    contactsApi.middleware,
-
-  ],
+    }).concat(contactsApi.middleware as Middleware),
+ 
 });
-
+    
 
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const persistor = persistStore(store);
 
 
