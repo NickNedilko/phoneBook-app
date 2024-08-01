@@ -11,12 +11,23 @@ interface ContactsProps {
   data: Contact[] ,
 }
 
-export const ContactsList: FC = () => {
+interface ContactListProps {
+  filter : string
+}
+
+export const ContactsList: FC<ContactListProps> = ({filter}) => {
    const user = useAppSelector(selectUser);
-     const { data} = useGetContactsQuery<ContactsProps>(user.id)
+  const { data } = useGetContactsQuery<ContactsProps>(user.id)
+  
+
+  const filteredContacts = data?.filter(contact => {
+    const normalizedFilter = filter.toLocaleLowerCase().trim();
+    return contact.name.toLocaleLowerCase().trim().includes(normalizedFilter)
+  })
+
     return (
-        data?.length ? <ContactList>
-            {data?.map((item: Contact) =>
+        filteredContacts?.length ? <ContactList>
+            {filteredContacts?.map((item: Contact) =>
                      <ContactItem key={item._id} contact={item} />
               
             )}
