@@ -41,6 +41,20 @@ export const contactsApi = createApi({
         }),
         invalidatesTags: ['Contact']
       }),
+      updatePhoto: builder.mutation({
+        query: ({_id, file}) => {
+          const data = new FormData();
+          data.append('Content-Type', file.type);
+          data.append('avatar', file);
+
+          return {
+            url: `contacts/${_id}/avatar`,
+            method: 'PATCH',
+            body: data,
+          }
+        },
+        invalidatesTags: ['Contact']
+      }),
       
      deleteContact: builder.mutation({
       query: (id) => ({
@@ -55,4 +69,6 @@ export const contactsApi = createApi({
 export const { useGetContactsQuery,
   useAddContactsMutation,
   useDeleteContactMutation,
-useUpdateContactMutation} = contactsApi;
+useUpdateContactMutation,
+useUpdatePhotoMutation
+} = contactsApi;

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getCurrentUser, login, logout, signUp } from "./authThunk"
+import { getCurrentUser, login, logout, signUp, updateAvatar } from "./authThunk"
 import { User } from "../../types/types"
 
 
@@ -15,7 +15,7 @@ interface State {
 
 const initialState: State = {
     token: '',
-    user: {name: '', id: '', email: '', avatarUrl: ''},
+    user: {name: '', id: '', email: '', avatarUrl: '', phone: ''},
     isLoading: false,
     error: null,
     isLoggedIn: false,
@@ -55,7 +55,8 @@ const authSlice = createSlice({
                 name: '',
                 email: '',
                 avatarUrl: '',
-                id: ''
+                id: '',
+                phone: ''
             }
             state.isLoggedIn = false; 
             state.isLoading = false;
@@ -72,6 +73,8 @@ const authSlice = createSlice({
         }).addCase(getCurrentUser.rejected, (state) => {
             state.isLoading = false;
             state.isRefreshing = false;
+        }).addCase(updateAvatar.fulfilled, (state, {payload}) => {
+            state.user.avatarUrl = payload;
         })
 
     }

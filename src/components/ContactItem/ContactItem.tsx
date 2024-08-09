@@ -4,14 +4,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useDeleteContactMutation } from '../../redux/contacts/contactsApi';
+import { useDeleteContactMutation, useUpdatePhotoMutation } from '../../redux/contacts/contactsApi';
 import {
   DeleteIcon,
   EditIcon,
 } from './ContactItem.styled';
 import EditContactModal from "../EditContactModal/EditContactModal";
 import { Contact } from "../../types/types";
-import { Avatar } from "@mui/material";
+import { PhotoAvatar } from "../PhotoAvatar/PhotoAvatar";
 
 interface ContactItemProps {
   contact: Contact
@@ -19,19 +19,30 @@ interface ContactItemProps {
 
 export const ContactItem: FC<ContactItemProps> = ({ contact}) => {
   const [deleteContact, {isLoading}] = useDeleteContactMutation()
-  const { name, phone, email } = contact;
+  const { name, phone, email, avatar, _id } = contact;
   const [isModalOpen, setModalOpen] = useState(false);
+  const [updatePhoto] = useUpdatePhotoMutation();
 
+
+const changeHandler =(e) =>{
+  const file = e.target.files[0];
+  const data = {
+    _id,
+    file
+  }
+
+  updatePhoto(data)
+
+}
 
   return (
     <>
     
        <Card sx={{ width: 320, padding: '15px'}}>
-      <Avatar
-  alt={name}
-  src="/static/images/avatar/1.jpg"
-  sx={{ width: 100, height: 100 , margin:'0 auto'}}
-/>
+ 
+
+      <PhotoAvatar avatar={avatar} onChange={changeHandler} name = {name}/>
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}

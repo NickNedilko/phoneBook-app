@@ -41,7 +41,7 @@ const EditContactModal:FC<EditModalProps> = ({ open, onClose, id, name, email, n
     }
 
     const editContact = {id, name: userName.trim(), email: userEmail.trim(), phone: phoneNumber.trim()}
-    console.log(editContact)
+   
       updateContact(editContact)
   
     onClose();

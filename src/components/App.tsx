@@ -12,6 +12,7 @@ import { PrivateRoute, RestrictedRoute } from './RedirectRoutes';
 import { getCurrentUser } from '../redux/auth/authThunk';
 import { AppDispatch } from '../redux/store';
 import HomePage from '../pages/HomePage';
+import ProfilePage from '../pages/ProfilePage';
 
 
 
@@ -35,6 +36,8 @@ function App() {
           <Route path='/register' element={<RestrictedRoute component={<RegistrationPage />} redirectTo='/contacts'/>} />
           <Route path='/login' element={<RestrictedRoute component={<LoginPage />} redirectTo='/contacts'/>} />
           <Route path='/contacts' element={<PrivateRoute component={<ContactsPage />} redirectTo='/login'/>} />
+          <Route path='/profile' element={<PrivateRoute component={<ProfilePage />} redirectTo='/login'/>} />
+
   </Route>
 </Routes>
 )
