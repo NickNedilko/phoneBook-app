@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import { Form, Img, Wrapper } from './ProfileInfo.styled';
 import { useDispatch } from 'react-redux';
-import { signUp, updateAvatar } from '../../redux/auth/authThunk';
+import { updateAvatar, updateUserInfo } from '../../redux/auth/authThunk';
 import profile from "../../assets/profile.webp"
 import { useAuth } from '../../hooks/useAuth';
 import { PhotoAvatar } from '../PhotoAvatar/PhotoAvatar';
@@ -32,7 +32,8 @@ interface Values {
 }
 export const ProfileInfo = () => {
   const dispatch = useDispatch<any>();
-const {user} = useAuth()
+const {user} = useAuth();
+
 
 
   const formik = useFormik({
@@ -45,15 +46,16 @@ const {user} = useAuth()
     validationSchema: validationSchema,
     onSubmit: (values:Values) => {
       
-        dispatch(signUp(values));
+        dispatch(updateUserInfo(values));
     },
   });
-
+ const isChange = !(user.name !== formik.values.name || user.email !== formik.values.email || user.phone !== formik.values.phone)
   return (
    <div>
      <Wrapper>
           <Form onSubmit={formik.handleSubmit}>
       <PhotoAvatar avatar={user.avatarUrl} onChange={(e)=>{dispatch(updateAvatar(e.target.files[0]))}} name = {user.name}/>
+               <h1>{user.name} profile</h1>
                <TextField
           fullWidth
           id="name"
@@ -84,14 +86,16 @@ const {user} = useAuth()
           value={formik.values.phone}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          error={formik.touched.phone && Boolean(formik.errors.phone)}
+          helperText={formik.touched.phone && formik.errors.phone}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Sign up
+        <Button color="primary" variant="contained" fullWidth type="submit" 
+        disabled={isChange}
+        >
+          Save
         </Button>
       </Form>
-    <Img src={profile} alt="sign up image" />
+    <Img src={profile} alt="profile info" />
     </Wrapper>
    </div>
   );

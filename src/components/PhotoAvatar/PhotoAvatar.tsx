@@ -1,7 +1,15 @@
 import { Avatar, Button } from "@mui/material"
 import { VisuallyHiddenInput } from "../ContactItem/ContactItem.styled"
+import { FC } from "react";
+import { User } from "../../types/types";
 
-export const PhotoAvatar = ({name, avatar, onChange}) =>{
+interface PhotoAvatarProps {
+  name: string,
+  avatar: Partial<User>,
+  onChange: ()=>void;
+}
+
+export const PhotoAvatar: FC<PhotoAvatarProps> = ({name, avatar, onChange}) =>{
 
     return(
         <Button

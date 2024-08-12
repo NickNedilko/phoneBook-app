@@ -15,6 +15,7 @@ import { contactsApi } from './contacts/contactsApi';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -26,6 +27,8 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer<any, any>(authPersistConfig, authReducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
+    
+
   },
   
   middleware:(getDefaultMiddleware) =>

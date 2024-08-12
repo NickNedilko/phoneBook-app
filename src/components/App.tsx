@@ -13,6 +13,7 @@ import { getCurrentUser } from '../redux/auth/authThunk';
 import { AppDispatch } from '../redux/store';
 import HomePage from '../pages/HomePage';
 import ProfilePage from '../pages/ProfilePage';
+import ChangePasswordPage from '../pages/ChangePasswordPage';
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/login' element={<RestrictedRoute component={<LoginPage />} redirectTo='/contacts'/>} />
           <Route path='/contacts' element={<PrivateRoute component={<ContactsPage />} redirectTo='/login'/>} />
           <Route path='/profile' element={<PrivateRoute component={<ProfilePage />} redirectTo='/login'/>} />
+          <Route path='/change-password' element={<PrivateRoute component={<ChangePasswordPage/>} redirectTo='/login'/>} />
 
   </Route>
 </Routes>

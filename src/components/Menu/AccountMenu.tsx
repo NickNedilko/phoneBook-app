@@ -21,7 +21,9 @@ const navigate = useNavigate();
           <MenuItem onClick={()=>{navigate('/profile')
             popupState.close()
           }}>Profile</MenuItem>
-            <MenuItem onClick={popupState.close}>My account</MenuItem>
+            <MenuItem onClick={()=>{navigate('/change-password')
+            popupState.close()
+          }}>Change Password</MenuItem>
             <MenuItem onClick={()=>{
               dispatch(logout())
               popupState.close()}

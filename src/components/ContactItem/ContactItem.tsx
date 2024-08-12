@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -24,7 +24,7 @@ export const ContactItem: FC<ContactItemProps> = ({ contact}) => {
   const [updatePhoto] = useUpdatePhotoMutation();
 
 
-const changeHandler =(e) =>{
+const changeHandler =(e:ChangeEvent<HTMLInputElement>) =>{
   const file = e.target.files[0];
   const data = {
     _id,

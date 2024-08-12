@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-// import { setAuthHeader } from "../../helpers/jwt";
 import axios from "axios";
 import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
 import { User } from "../../types/types";
@@ -69,10 +68,32 @@ export const updateAvatar = createAsyncThunk(
     formData.append('avatar', file);
       try {
           const {data} = await axios.patch('api/user/avatar', formData)
-          setAuthHeader(data.token);
           return data;
       } catch (error: any) {
           return thunkAPI.rejectWithValue(error.massage)
       }
   }
 );
+
+export const updateUserInfo = createAsyncThunk(
+  'auth/update-current', async (creditinals, thunkAPI) => {
+      try {
+          const {data} = await axios.patch('api/user/update-current', creditinals);
+          return data;
+      } catch (error: any) {
+          return thunkAPI.rejectWithValue(error.massage)
+      }
+  }
+);
+
+
+export const updatePassword = createAsyncThunk(
+  'auth/update-password', async (creditinals, thunkAPI) => {
+    try {
+        const {data} = await axios.patch('api/user/update-password', creditinals);
+        return data;
+    } catch (error: any) {
+        return thunkAPI.rejectWithValue(error.massage)
+    }
+}
+)
