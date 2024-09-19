@@ -9,6 +9,7 @@ import profile from "../../assets/profile.webp"
 import { useAuth } from '../../hooks/useAuth';
 import { PhotoAvatar } from '../PhotoAvatar/PhotoAvatar';
 import { FormEvent } from 'react';
+import toast from 'react-hot-toast';
 
 
 
@@ -24,7 +25,7 @@ const validationSchema = yup.object({
     .string()
     
 });
-interface Values {
+export interface Values {
   name: string;
   email: string;
   phone: string;
@@ -46,7 +47,7 @@ const {user} = useAuth();
     },
     validationSchema: validationSchema,
     onSubmit: (values:Values) => {
-      
+      toast.success('Information successfully changed')
         dispatch(updateUserInfo(values));
     },
   });

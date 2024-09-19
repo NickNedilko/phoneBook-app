@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Header from "../Header/Header";
 import { Container } from "./SharedLayout.styled";
 import Footer from "../Footer/Footer";
+import { Toaster } from 'react-hot-toast';
 import { Loader } from "../Loader/Loader";
 
 
@@ -14,7 +15,8 @@ const SharedLayout = () => {
             <Container>
                  <Suspense fallback={<Loader/>}> 
             <Outlet />
-         </Suspense> 
+                    </Suspense> 
+                    <Toaster/>
             </Container>   
         </main>
         <Footer />

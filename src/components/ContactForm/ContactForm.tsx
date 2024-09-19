@@ -7,6 +7,7 @@ import { useAddContactsMutation } from '../../redux/contacts/contactsApi';
 import { selectUser } from '../../redux/auth/selectors';
 import { useAppSelector } from '../../redux/store';
 import { FC } from 'react';
+import toast from 'react-hot-toast';
 
 
 
@@ -44,6 +45,9 @@ export const ContactForm: FC<ContactFormProps> = ({onClose}) => {
       id,
       ...values
     }
+    
+      toast.success('Contact successfully add')
+    
     addContacts(data);
     onClose();
 }

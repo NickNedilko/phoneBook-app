@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import changePasswordImg from "../../assets/change-password.png"
 import { Img } from '../LoginForm/LoginForm.styled';
 import { updatePassword } from '../../redux/auth/authThunk';
+import toast from 'react-hot-toast';
 
 
 
@@ -21,7 +22,7 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
-interface Values {
+export interface PasswordValues {
 
   password: string;
   newPassword: string
@@ -37,7 +38,9 @@ export const ChangePassword = () => {
       newPassword: ''
     },
     validationSchema: validationSchema,
-    onSubmit: (values:Values) => {
+    onSubmit: (values: PasswordValues) => {
+      toast.success('User password successfully changed!')
+      
        dispatch(updatePassword(values));
     },
   });

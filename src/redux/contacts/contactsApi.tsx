@@ -4,7 +4,7 @@ import { Contact } from '../../types/types';
 
 
 
-const dev = false;
+const dev = true;
 
 const BASE_URL =  dev ? 'https://phonebook-app-backend-xskd.onrender.com/api': 'http://localhost:3000/api'
 

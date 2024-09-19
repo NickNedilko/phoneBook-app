@@ -2,9 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios";
 import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
 import { User } from "../../types/types";
+import { Values } from "../../components/ProfileInfo/ProfileInfo";
+import { PasswordValues } from "../../components/ChangePassword/ChangePassword";
 
 
-const dev = false;
+const dev = true;
 
 const BASE_URL =  dev? 'https://phonebook-app-backend-xskd.onrender.com/api': 'http://localhost:3000/api'
 
@@ -80,7 +82,7 @@ export const updateAvatar = createAsyncThunk(
 );
 
 export const updateUserInfo = createAsyncThunk(
-  'auth/update-current', async (creditinals, thunkAPI) => {
+  'auth/update-current', async (creditinals: Values, thunkAPI)   => {
       try {
           const {data} = await axios.patch(`${BASE_URL}/user/update-current`, creditinals);
           return data;
@@ -92,7 +94,7 @@ export const updateUserInfo = createAsyncThunk(
 
 
 export const updatePassword = createAsyncThunk(
-  'auth/update-password', async (creditinals, thunkAPI) => {
+  'auth/update-password', async (creditinals: PasswordValues, thunkAPI) => {
     try {
         const {data} = await axios.patch(`${BASE_URL}/user/update-password`, creditinals);
         return data;
