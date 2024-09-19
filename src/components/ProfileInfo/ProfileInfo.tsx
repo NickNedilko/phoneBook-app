@@ -8,6 +8,7 @@ import { updateAvatar, updateUserInfo } from '../../redux/auth/authThunk';
 import profile from "../../assets/profile.webp"
 import { useAuth } from '../../hooks/useAuth';
 import { PhotoAvatar } from '../PhotoAvatar/PhotoAvatar';
+import { FormEvent } from 'react';
 
 
 
@@ -49,12 +50,20 @@ const {user} = useAuth();
         dispatch(updateUserInfo(values));
     },
   });
+
+  const handleUpdateAvatar = (e: FormEvent<HTMLInputElement>) => {
+   if (!e.currentTarget.files) {
+      return;
+    }
+  {dispatch(updateAvatar(e.currentTarget.files[0]))}
+}
+
  const isChange = !(user.name !== formik.values.name || user.email !== formik.values.email || user.phone !== formik.values.phone)
   return (
    <div>
      <Wrapper>
           <Form onSubmit={formik.handleSubmit}>
-      <PhotoAvatar avatar={user.avatarUrl} onChange={(e)=>{dispatch(updateAvatar(e.target.files[0]))}} name = {user.name}/>
+      <PhotoAvatar avatar={user.avatarUrl} onChange={handleUpdateAvatar} name = {user.name}/>
                <h1>{user.name} profile</h1>
                <TextField
           fullWidth

@@ -4,7 +4,7 @@ import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
 import { User } from "../../types/types";
 
 
-const dev = true;
+const dev = false;
 
 const BASE_URL =  dev? 'https://phonebook-app-backend-xskd.onrender.com/api': 'http://localhost:3000/api'
 
