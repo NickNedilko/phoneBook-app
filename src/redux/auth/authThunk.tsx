@@ -4,11 +4,15 @@ import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
 import { User } from "../../types/types";
 
 
+const dev = true;
+
+const BASE_URL =  dev? 'https://phonebook-app-backend-xskd.onrender.com/api': 'http://localhost:3000/api'
+
 
 export const signUp = createAsyncThunk(
     'auth/signUp', async(credentials: Partial<User>, thunkAPI)=> {
         try {
-        const {data} = await axios.post('api/auth/register', credentials)
+        const {data} = await axios.post(`${BASE_URL}/auth/register`, credentials)
             setAuthHeader(data.token)
         return data;
     } catch (error: any) {
@@ -19,7 +23,7 @@ export const signUp = createAsyncThunk(
 export const login = createAsyncThunk(
     'auth/login', async (credentials: Partial<User>, thunkAPI) => {
         try {
-            const {data} = await axios.post('api/auth/login', credentials)
+            const {data} = await axios.post(`${BASE_URL}/auth/login`, credentials)
             setAuthHeader(data.token);
             return data;
         } catch (error: any) {
@@ -31,7 +35,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
     'auth/logout', async (_, thunkAPI) => {
         try {
-            await axios.post('api/auth/logout');
+            await axios.post(`${BASE_URL}/auth/logout`);
             clearAuthHeader();
         } catch (error:any) {
             return thunkAPI.rejectWithValue(error.massage)
@@ -52,7 +56,7 @@ export const getCurrentUser =  createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-        const res = await axios.get('api/user/current');
+        const res = await axios.get(`${BASE_URL}/user/current`);
        
       return res.data;
     } catch (error: any) {
@@ -67,7 +71,7 @@ export const updateAvatar = createAsyncThunk(
     formData.append('Content-Type', file.type);
     formData.append('avatar', file);
       try {
-          const {data} = await axios.patch('api/user/avatar', formData)
+          const {data} = await axios.patch(`${BASE_URL}/user/avatar`, formData)
           return data;
       } catch (error: any) {
           return thunkAPI.rejectWithValue(error.massage)
@@ -78,7 +82,7 @@ export const updateAvatar = createAsyncThunk(
 export const updateUserInfo = createAsyncThunk(
   'auth/update-current', async (creditinals, thunkAPI) => {
       try {
-          const {data} = await axios.patch('api/user/update-current', creditinals);
+          const {data} = await axios.patch(`${BASE_URL}/user/update-current`, creditinals);
           return data;
       } catch (error: any) {
           return thunkAPI.rejectWithValue(error.massage)
@@ -90,7 +94,7 @@ export const updateUserInfo = createAsyncThunk(
 export const updatePassword = createAsyncThunk(
   'auth/update-password', async (creditinals, thunkAPI) => {
     try {
-        const {data} = await axios.patch('api/user/update-password', creditinals);
+        const {data} = await axios.patch(`${BASE_URL}/user/update-password`, creditinals);
         return data;
     } catch (error: any) {
         return thunkAPI.rejectWithValue(error.massage)
