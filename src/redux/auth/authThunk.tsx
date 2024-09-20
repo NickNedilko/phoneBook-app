@@ -4,9 +4,10 @@ import { clearAuthHeader, setAuthHeader } from "../../helpers/jwt";
 import { User } from "../../types/types";
 import { Values } from "../../components/ProfileInfo/ProfileInfo";
 import { PasswordValues } from "../../components/ChangePassword/ChangePassword";
+import { ForgotPassword } from "../../components/ForgotPassword/ForgotPassword";
 
 
-const dev = true;
+const dev = false;
 
 const BASE_URL =  dev? 'https://phonebook-app-backend-xskd.onrender.com/api': 'http://localhost:3000/api'
 
@@ -98,6 +99,17 @@ export const updatePassword = createAsyncThunk(
     try {
         const {data} = await axios.patch(`${BASE_URL}/user/update-password`, creditinals);
         return data;
+    } catch (error: any) {
+        return thunkAPI.rejectWithValue(error.massage)
+    }
+}
+)
+
+export const forgotPassword = createAsyncThunk(
+  'auth/forgot-password', async (creditinals: ForgotPassword, thunkAPI) => {
+    try {
+      await axios.post(`${BASE_URL}/auth/forgot-password`, creditinals);
+
     } catch (error: any) {
         return thunkAPI.rejectWithValue(error.massage)
     }

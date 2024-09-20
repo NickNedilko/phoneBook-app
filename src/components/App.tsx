@@ -14,6 +14,7 @@ import { AppDispatch } from '../redux/store';
 import HomePage from '../pages/HomePage';
 import ProfilePage from '../pages/ProfilePage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
+import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route index element={<HomePage />}></Route>
           <Route path='/register' element={<RestrictedRoute component={<RegistrationPage />} redirectTo='/contacts'/>} />
           <Route path='/login' element={<RestrictedRoute component={<LoginPage />} redirectTo='/contacts'/>} />
+          <Route path='/forgot-password' element={<RestrictedRoute component={<ForgotPasswordPage />} redirectTo='/contacts'/>} />
           <Route path='/contacts' element={<PrivateRoute component={<ContactsPage />} redirectTo='/login'/>} />
           <Route path='/profile' element={<PrivateRoute component={<ProfilePage />} redirectTo='/login'/>} />
           <Route path='/change-password' element={<PrivateRoute component={<ChangePasswordPage/>} redirectTo='/login'/>} />

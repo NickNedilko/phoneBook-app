@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getCurrentUser, login, logout, signUp, updateAvatar, updatePassword, updateUserInfo } from "./authThunk"
+import { getCurrentUser, login, logout, signUp, updateAvatar, updatePassword, updateUserInfo, forgotPassword } from "./authThunk"
 import { User } from "../../types/types"
 
 
@@ -79,7 +79,9 @@ const authSlice = createSlice({
             state.user = {...state.user, ...payload};
         }).addCase(updatePassword.fulfilled, (state, {payload}) => {
             state.user.password = payload;
-        })
+        }).addCase(forgotPassword.fulfilled, (state) => {
+           state.isLoading = false;
+            })
 
     }
 }
